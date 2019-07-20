@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "482811103931",
+    "firebase_url": "https://hackmobility-e2dd2.firebaseio.com",
+    "project_id": "hackmobility-e2dd2",
+    "storage_bucket": "hackmobility-e2dd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482811103931:android:e48294db61c1aa85",
+        "android_client_info": {
+          "package_name": "app.qualcarro.hackmobility.hack_mobility"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482811103931-mu82f7dgna98910196lhe9dg4ojpg03d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.qualcarro.hackmobility.hack_mobility",
+            "certificate_hash": "ece87d959112bb33488c3b373bfd77a30433d485"
+          }
+        },
+        {
+          "client_id": "482811103931-sgg6kokmqptkv9khrsbae245vlrpt971.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBt7tZl3efpLhZn7K0z-XxWaI2WP0E1MCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482811103931-sgg6kokmqptkv9khrsbae245vlrpt971.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
