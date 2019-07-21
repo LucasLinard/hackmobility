@@ -23,20 +23,23 @@ class _HomeScreenState extends State<HomeScreen> {
         label: Text('Modal'),
       ),
       DataColumn(
-          onSort: (index, value) {
-            ScopedModel.of<AppState>(context, rebuildOnChange: true).orderByDistance();
-          },
-          numeric: true, label: Text('Distance'),
-
+        onSort: (index, value) {
+          ScopedModel.of<AppState>(context, rebuildOnChange: true)
+              .orderByDistance();
+        },
+        numeric: true,
+        label: Text('Distance'),
       ),
       DataColumn(
           onSort: (index, value) {
-            ScopedModel.of<AppState>(context, rebuildOnChange: true).orderByDistance();
+            ScopedModel.of<AppState>(context, rebuildOnChange: true)
+                .orderByDistance();
           },
-          numeric: true, label: Text('Price')
-      ),
+          numeric: true,
+          label: Text('Price')),
       DataColumn(numeric: true, label: Text('ETA')),
-      DataColumn(numeric: true,
+      DataColumn(
+        numeric: true,
         label: Text('Footprint'),
       ),
     ];
@@ -110,14 +113,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       .then((response) {
                     if (response.statusCode == 200) {
                       Map<String, dynamic> data = jsonDecode(response.body);
-                      print('=====================================');
                       model.prepareTransportList(data);
                       setState(() {
                         rows = model.transportModes.map((tm) {
                           return createDataRow(tm);
                         }).toList();
                       });
-
                     } else {
                       print('bad response');
                     }
@@ -161,13 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
     DataCell distance = DataCell(Text(tm.distance.toString()));
     DataCell price = DataCell(Text(tm.price.toString()));
     DataCell eta = DataCell(Text(tm.eta.toString()));
-    DataCell footprint  = DataCell(Text(tm.carbonFootprint.toString()));
-    return DataRow(cells: [
-      name,
-      distance,
-      price,
-      eta,
-      footprint
-    ]);
+    DataCell footprint = DataCell(Text(tm.carbonFootprint.toString()));
+    return DataRow(cells: [name, distance, price, eta, footprint]);
   }
 }
