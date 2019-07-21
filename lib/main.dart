@@ -27,18 +27,50 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _currentIndex = 0;
+  List<Widget> telas = [
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: HomeScreen(),
+      body: telas[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+          onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.account_circle),
+            title: new Text('Profile'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.people),
+            title: new Text('Ranking'),
+          ),
+        ],
+      ),
     );
   }
 }
