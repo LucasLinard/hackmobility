@@ -44,9 +44,9 @@ class AppState extends Model {
     _transportModes.add(TransportMode.fromJson(data['bike'], 'Bike'));
     _transportModes.add(TransportMode.fromJson(data['bus'], 'Public transport'));
     _transportModes.add(TransportMode.fromJson(data['car'], 'Car (alone)'));
+    _transportModes.add(TransportMode.fromJson(data['car-pool'], 'Carpool'));
     _transportModes.add(TransportMode.fromJson(data['e-bike'], 'E-bike'));
     _transportModes.add(TransportMode.fromJson(data['e-car'], 'E-car'));
-    _transportModes.add(TransportMode.fromJson(data['h-car'], 'Hybrid car'));
     orderByCarbonFootprint();
     notifyListeners();
   }

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hack_mobility/Util/Network.dart';
-import 'package:hack_mobility/components/google_map.dart';
+import 'package:hack_mobility/components/my_flutter_app_icons.dart';
 import 'package:hack_mobility/model/app_state.dart';
 import 'package:hack_mobility/model/transport_mode.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -13,14 +13,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController originController = TextEditingController();
-  TextEditingController destinyController = TextEditingController();
+  TextEditingController originController;
+  TextEditingController destinyController;
+  bool imageFetched = false;
+  String imageUrl;
   @override
   void initState() {
     super.initState();
+    originController = TextEditingController.fromValue(
+        TextEditingValue(text: "440 N Wolfe R, Sunnyvale"));
+    destinyController = TextEditingController.fromValue(
+        TextEditingValue(text: "44 Tehama St, San Francisco, CA 94105"));
     columns = [
       DataColumn(
-        label: Text('Modal'),
+        label: Text('Mode'),
       ),
       DataColumn(
         onSort: (index, value) {
@@ -28,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               .orderByDistance();
         },
         numeric: true,
-        label: Text('Distance'),
+        label: Text('miles'),
       ),
       DataColumn(
           onSort: (index, value) {
@@ -36,11 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 .orderByDistance();
           },
           numeric: true,
-          label: Text('Price')),
-      DataColumn(numeric: true, label: Text('ETA')),
+          label: Text('\$')),
+      DataColumn(numeric: true, label: Text('minutes')),
       DataColumn(
         numeric: true,
-        label: Text('Footprint'),
+        label: Text('gCO2'),
       ),
     ];
     rows = [];
@@ -51,8 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    NetworkUtil.postAddressData(
-        "440 N Wolfe R, Sunnyvale", "103 Brahms Way, Sunnyvale");
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -62,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  controller: originController,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.home),
                     hintText: 'Where are you now?',
@@ -85,6 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  controller: destinyController,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.map),
                     hintText: 'Where do you want to go?',
@@ -106,15 +112,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonTheme(
             child: ScopedModelDescendant<AppState>(
               builder: (context, _, model) => RaisedButton(
-                child: Text('Search'),
+                child: Text(
+                  'Search',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onPressed: () {
-                  NetworkUtil.postAddressData("440 N Wolfe R, Sunnyvale",
-                          "103 Brahms Way, Sunnyvale")
+                  NetworkUtil.postAddressData(
+                          originController.text, destinyController.text)
                       .then((response) {
                     if (response.statusCode == 200) {
                       Map<String, dynamic> data = jsonDecode(response.body);
                       model.prepareTransportList(data);
                       setState(() {
+                        imageFetched = true;
+                        print(data['data']['routes']['car']);
+                        imageUrl = data['data']['routes']['car'];
                         rows = model.transportModes.map((tm) {
                           return createDataRow(tm);
                         }).toList();
@@ -128,13 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-              flex: 4,
+              flex: 6,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MapSmall(),
+                padding: const EdgeInsets.all(4.0),
+                child: imageFetched ? Image.network(imageUrl) : SizedBox(),
               )),
           Expanded(
-            flex: 6,
+            flex: 4,
             child: ScopedModelDescendant<AppState>(
               builder: (BuildContext context, Widget child, AppState model) {
                 return ListView(
@@ -157,8 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   DataRow createDataRow(TransportMode tm) {
-    print('createDataRow');
-    DataCell name = DataCell(Text(tm.name));
+    DataCell name = DataCell(ListTile(title: Text(tm.name), leading: tm.icon));
     DataCell distance = DataCell(Text(tm.distance.toString()));
     DataCell price = DataCell(Text(tm.price.toString()));
     DataCell eta = DataCell(Text(tm.eta.toString()));

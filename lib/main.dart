@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hack_mobility/components/spark.dart';
 import 'package:hack_mobility/model/app_state.dart';
 import 'package:hack_mobility/screen/home.dart';
+import 'package:hack_mobility/screen/rank.dart';
+import 'package:hack_mobility/screen/together.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 void main() => runApp(MyApp());
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green
         ),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+        home: MyHomePage(title: 'GreenGo'),
       ),
     );
   }
@@ -36,8 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   List<Widget> telas = [
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    Together(),
+    Rank(),
   ];
 
   void onTabTapped(int index) {
