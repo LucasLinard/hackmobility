@@ -52,7 +52,7 @@ class NetworkUtil {
       'data': {"PlaceName0": origin, "PlaceName1": destiny}
     });
 
-    var mUrl = "http://40.114.67.101:8080/api/v1/route_stats/";
+    var mUrl = "http://13.68.134.163:8080/api/v1/route_stats/";
     final MetricHttpClient metricHttpClient = MetricHttpClient(Client());
     return metricHttpClient.post(mUrl, body: mBody, headers: new Map.from(headers));
   }

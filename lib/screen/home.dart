@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'dart:math';
+import 'package:hack_mobility/model/coordinate.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hack_mobility/Util/Network.dart';
@@ -169,11 +172,44 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   DataRow createDataRow(TransportMode tm) {
-    DataCell name = DataCell(ListTile(title: Text(tm.name), leading: tm.icon));
+
+    DataCell name = DataCell(GestureDetector(
+        onTap: () {
+          _launchURL(buildUri(originController.text, destinyController.text, tm.origem, tm.destino));
+        },
+        child: ListTile(title: Text(tm.name), leading: tm.icon)));
     DataCell distance = DataCell(Text(tm.distance.toString()));
     DataCell price = DataCell(Text(tm.price.toString()));
     DataCell eta = DataCell(Text(tm.eta.toString()));
     DataCell footprint = DataCell(Text(tm.carbonFootprint.toString()));
     return DataRow(cells: [name, distance, price, eta, footprint]);
+  }
+  String buildUri(String pickup, String dropoff, Coordinate origem, Coordinate destino) {
+    String authority = "m.uber.com";
+    String unencodedPath = "/ul";
+    Map<String,String> parameters = Map();
+
+    parameters['client_id'] = 'Myc2WmfGR25p4eIAsAA1GtW_C1B4qBqS';
+    parameters['action'] = 'setPickup';
+
+    parameters['pickup[formatted_address]'] = pickup;
+    parameters['dropoff[formatted_address]'] = dropoff;
+
+    parameters['pickup[latitude]'] = origem.latitude.toString();
+    parameters['pickup[longitude]'] = origem.longitude.toString();
+
+    parameters['dropoff[latitude]'] = destino.latitude.toString();
+    parameters['dropoff[longitude]'] = destino.longitude.toString();
+
+    return Uri.https(authority, unencodedPath, parameters).toString();
+  }
+
+  _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      print(url);
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

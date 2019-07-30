@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:hack_mobility/components/my_flutter_app_icons.dart';
+import 'package:hack_mobility/model/coordinate.dart';
 
 Map<String, Widget> icons = {
   'Bike': Icon(MyFlutterApp.bicycle),
@@ -19,6 +20,8 @@ class TransportMode {
   int eta;
   int carbonFootprint;
   Widget icon;
+  Coordinate origem;
+  Coordinate destino;
 
   TransportMode({
     this.name,
@@ -27,15 +30,19 @@ class TransportMode {
     this.eta,
     this.carbonFootprint,
     this.icon,
+    this.origem,
+    this.destino
   });
 
-  factory TransportMode.fromJson(Map<String, dynamic> json, String nome) {
+  factory TransportMode.fromJson(Map<String, dynamic> json, String nome, Coordinate origem, Coordinate destino) {
     return TransportMode(
         name: nome,
         price: json['price'],
         distance: json['distance'],
         eta: json['eta'],
         carbonFootprint: json['footprint'],
-        icon:icons[nome]);
+        icon:icons[nome],
+        origem: origem,
+        destino: destino);
   }
 }
