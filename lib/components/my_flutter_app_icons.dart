@@ -16,22 +16,6 @@
 ///         Author:    Google
 ///         License:   Apache 2.0 (https://www.apache.org/licenses/LICENSE-2.0)
 ///         Homepage:  https://design.google.com/icons/
-/// * Entypo, Copyright (C) 2012 by Daniel Bruce
-///         Author:    Daniel Bruce
-///         License:   SIL (http://scripts.sil.org/OFL)
-///         Homepage:  http://www.entypo.com
-/// * Elusive, Copyright (C) 2013 by Aristeides Stathopoulos
-///         Author:    Aristeides Stathopoulos
-///         License:   SIL (http://scripts.sil.org/OFL)
-///         Homepage:  http://aristeides.com/
-/// * Iconic, Copyright (C) 2012 by P.J. Onori
-///         Author:    P.J. Onori
-///         License:   SIL (http://scripts.sil.org/OFL)
-///         Homepage:  http://somerandomdude.com/work/iconic/
-/// * Maki, Copyright (C) Mapbox, LCC
-///         Author:    Mapbox
-///         License:   BSD (https://github.com/mapbox/maki/blob/gh-pages/LICENSE.txt)
-///         Homepage:  http://mapbox.com/maki/
 /// * Font Awesome, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
@@ -45,12 +29,13 @@ class MyFlutterApp {
   static const _kFontFam = 'MyFlutterApp';
 
   static const IconData flash_on = const IconData(0xe800, fontFamily: _kFontFam);
-  static const IconData battery = const IconData(0xe801, fontFamily: _kFontFam);
-  static const IconData attach_money = const IconData(0xe802, fontFamily: _kFontFam);
-  static const IconData globe = const IconData(0xe803, fontFamily: _kFontFam);
-  static const IconData clock = const IconData(0xe804, fontFamily: _kFontFam);
-  static const IconData local_gas_station = const IconData(0xe805, fontFamily: _kFontFam);
-  static const IconData bicycle = const IconData(0xe80a, fontFamily: _kFontFam);
-  static const IconData bus = const IconData(0xe80b, fontFamily: _kFontFam);
+  static const IconData leaf = const IconData(0xe801, fontFamily: _kFontFam);
+  static const IconData battery_charging_full = const IconData(0xe802, fontFamily: _kFontFam);
+  static const IconData attach_money = const IconData(0xe803, fontFamily: _kFontFam);
+  static const IconData globe = const IconData(0xe804, fontFamily: _kFontFam);
+  static const IconData clock = const IconData(0xe805, fontFamily: _kFontFam);
+  static const IconData local_gas_station = const IconData(0xe806, fontFamily: _kFontFam);
+  static const IconData directions_bus = const IconData(0xe807, fontFamily: _kFontFam);
   static const IconData cab = const IconData(0xf1b9, fontFamily: _kFontFam);
+  static const IconData bicycle = const IconData(0xf206, fontFamily: _kFontFam);
 }

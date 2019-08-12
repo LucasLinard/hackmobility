@@ -1,0 +1,70 @@
+{
+  "name": "",
+  "css_prefix_text": "",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "19e7b342a5e6bd0cd86de6d6208486a4",
+      "css": "leaf",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "0ebafcb46192a04ed320d005473efe65",
+      "css": "flash_on",
+      "code": 59392,
+      "src": "material"
+    },
+    {
+      "uid": "b1c822864b8f33a31287d4c0805b3834",
+      "css": "battery_charging_full",
+      "code": 59394,
+      "src": "material"
+    },
+    {
+      "uid": "79862c055035d48e5126fd4511de2059",
+      "css": "attach_money",
+      "code": 59395,
+      "src": "material"
+    },
+    {
+      "uid": "197375a3cea8cb90b02d06e4ddf1433d",
+      "css": "globe",
+      "code": 59396,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "598a5f2bcf3521d1615de8e1881ccd17",
+      "css": "clock",
+      "code": 59397,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "79eee32b88cce02d394e417dbd209443",
+      "css": "local_gas_station",
+      "code": 59398,
+      "src": "material"
+    },
+    {
+      "uid": "891d861cffd152a6474f01e77716d44e",
+      "css": "bicycle",
+      "code": 61958,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "dfc97263d6458ea4cf288c85543325b8",
+      "css": "directions_bus",
+      "code": 59399,
+      "src": "material"
+    },
+    {
+      "uid": "9937d762aee170b7350b15dd02dd34a3",
+      "css": "cab",
+      "code": 61881,
+      "src": "fontawesome"
+    }
+  ]
+}
